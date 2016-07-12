@@ -1,0 +1,21 @@
+{
+  "name": "cache",
+  "version": "1.0.0",
+  "description": "Caching function for browsers and node.",
+  "keywords": [
+    "cache",
+    "memoization",
+    "decorator",
+    "functions"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover _mocha -- -R nyan"
+  },
+  "author": "Alejo Rodriguez <a.rodsott@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3"
+  }
+}
