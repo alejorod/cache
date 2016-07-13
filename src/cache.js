@@ -2,7 +2,11 @@ function cacheFn(time) {
   return function(f) {
     let f_cache = {};
 
-    return function(...args) {
+    function clearCache() {
+      f_cache = {};
+    }
+
+    function wrapper(...args) {
       let key = JSON.stringify(args);
       let cache = f_cache[key];
       let now = Date.now();
@@ -21,6 +25,9 @@ function cacheFn(time) {
 
       return result;
     };
+
+    wrapper.clearCache = clearCache;
+    return wrapper;
   };
 }
 

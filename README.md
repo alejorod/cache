@@ -1,4 +1,4 @@
-# Function caching in Javascript [![Build Status](https://travis-ci.org/alejorod/cache.svg?branch=master)](https://travis-ci.org/alejorod/cache) [![Coverage Status](https://coveralls.io/repos/github/alejorod/cache/badge.svg?branch=master)](https://coveralls.io/github/alejorod/cache?branch=master)  
+# Function caching in Javascript [![Build Status](https://travis-ci.org/alejorod/cache.svg?branch=master)](https://travis-ci.org/alejorod/cache) [![Coverage Status](https://coveralls.io/repos/github/alejorod/cache/badge.svg?branch=master)](https://coveralls.io/github/alejorod/cache?branch=master) [![npm version](https://badge.fury.io/js/fn-cache.svg)](https://badge.fury.io/js/fn-cache)  
 
 Cache for functions in javascript. Supports CommonJs, AMD, ES6 modules and regular script tag.
 
