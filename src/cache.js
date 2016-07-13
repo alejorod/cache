@@ -1,11 +1,10 @@
-function cache(time) {
+function cacheFn(time) {
   return function(f) {
-    let result_cache = {};
+    let f_cache = {};
 
-    return function() {
-      let arr_args = Array.prototype.slice.call(arguments);
-      let key = JSON.stringify(arr_args);
-      let cache = result_cache[key];
+    return function(...args) {
+      let key = JSON.stringify(args);
+      let cache = f_cache[key];
       let now = Date.now();
       let result;
 
@@ -13,9 +12,9 @@ function cache(time) {
         return cache.result;
       }
 
-      result = f.apply(f, arr_args);
+      result = f.apply(f, args);
 
-      result_cache[key] = {
+      f_cache[key] = {
         timestamp: now,
         result
       };
@@ -28,10 +27,10 @@ function cache(time) {
 export default function(time) {
   return function(target, property, descriptor) {
     if (typeof target == 'function') {
-      return cache(time)(target);
+      return cacheFn(time)(target);
     }
 
-    descriptor.value = cache(time)(descriptor.value);
+    descriptor.value = cacheFn(time)(descriptor.value);
     return descriptor;
   };
 }
