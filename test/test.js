@@ -31,7 +31,7 @@ function concatObject(obj) {
 var promiseResult = 'promise';
 
 function promiseResolve() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     resolve(promiseResult);
   });
 }
@@ -115,7 +115,6 @@ describe('Function Cache', function() {
     });
 
     it('shouldn\'t use cached result if object changes', function() {
-      var arr = [1, 2, 3, 4];
       var obj = {
         name: 'jhon',
         lastname: 'doe'

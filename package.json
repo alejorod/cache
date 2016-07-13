@@ -13,7 +13,8 @@
     "test": "mocha --compilers js:babel-core/register -R spec",
     "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- -R spec",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "lint": "eslint src/ test/"
   },
   "author": "Alejo Rodriguez <a.rodsott@gmail.com>",
   "license": "MIT",
@@ -25,6 +26,7 @@
     "babel-preset-es2015-rollup": "^1.1.1",
     "chai": "^3.5.0",
     "coveralls": "^2.11.11",
+    "eslint": "^3.0.1",
     "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
     "rollup": "^0.34.1",
