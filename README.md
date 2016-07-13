@@ -60,5 +60,5 @@ var sumLongArray = cache(Infinity)(function(longArray) {
 // Include it in your page using:
 // <script src="lib/fn-cache.js" ></script>
 
-var sqrt = cache(Infinity)(Math.sqrt);
+var sqrt = fnCache(Infinity)(Math.sqrt);
 ```
