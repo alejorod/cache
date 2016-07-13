@@ -1,6 +1,6 @@
 # Function caching in Javascript [![Build Status](https://travis-ci.org/alejorod/cache.svg?branch=master)](https://travis-ci.org/alejorod/cache) [![Coverage Status](https://coveralls.io/repos/github/alejorod/cache/badge.svg?branch=master)](https://coveralls.io/github/alejorod/cache?branch=master)  
 
-Caching function decorator. Supports CommonJs, AMD, ES6 modules and regular script tag.
+Cache for functions in javascript. Supports CommonJs, AMD, ES6 modules and regular script tag.
 
 Basic usage:
 
@@ -12,10 +12,9 @@ let fetchUsers = cache(200)(() => {
 });
 ```
 
-```cache``` implements the decorator pattern. It takes in the milliseconds cache lifetime and returns a function. Call it with the function you want to cache and
-enjoy the application performance upgrade! 😎
+```cache``` implements the decorator pattern. It takes in the cache lifetime (milliseconds) and returns a function. Call that with the function you want to cache and enjoy instant application performance boost! 😎
 
-> TIP: use Infinity time for stateless functions.
+> TIP: Use Infinity for time if you want the cache to stay valid forever.
 
 ### Examples
 
