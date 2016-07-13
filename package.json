@@ -8,6 +8,13 @@
     "decorator",
     "functions"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alejorod/cache.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alejorod/cache/issues"
+  },
   "main": "lib/fn-cache.js",
   "scripts": {
     "build": "rollup -c",
