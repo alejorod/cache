@@ -5,14 +5,14 @@ Cache for functions in javascript. Supports CommonJs, AMD, ES6 modules and regul
 Basic usage:
 
 ```Javascript
-import cache from 'cache';
+import cache from 'fn-cache';
 
 let fetchUsers = cache(200)(() => {
   return fetch('/users');
 });
 ```
 
-```cache``` implements the decorator pattern. It takes in the cache lifetime (milliseconds) and returns a function. Call that with the function you want to cache and enjoy instant application performance boost! 😎
+```fn-cache``` implements the decorator pattern. It takes in the cache lifetime (milliseconds) and returns a function. Call that with the function you want to cache and enjoy instant application performance boost! 😎
 
 > TIP: Use Infinity for time if you want the cache to stay valid forever.
 
@@ -21,7 +21,7 @@ let fetchUsers = cache(200)(() => {
 ```Javascript
 // es7 decorators
 
-import cache from 'cache';
+import cache from 'fn-cache';
 
 class UserManager {
 
@@ -37,7 +37,7 @@ class UserManager {
 ```Javascript
 // es6
 
-import cache from 'cache';
+import cache from 'fn-cache';
 
 let fetchUsers = cache(200)(fetch.bind(null, '/users'));
 ```
@@ -45,7 +45,7 @@ let fetchUsers = cache(200)(fetch.bind(null, '/users'));
 ```Javascript
 // es5 + node
 
-var cache = require('cache');
+var cache = require('fn-cache');
 
 var sumLongArray = cache(Infinity)(function(longArray) {
   return longArray.reduce(function(prev, curr) {
@@ -58,7 +58,7 @@ var sumLongArray = cache(Infinity)(function(longArray) {
 // es5 + browser
 
 // Include it in your page using:
-// <script src="lib/cache.js" ></script>
+// <script src="lib/fn-cache.js" ></script>
 
 var sqrt = cache(Infinity)(Math.sqrt);
 ```

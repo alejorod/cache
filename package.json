@@ -1,5 +1,5 @@
 {
-  "name": "cache",
+  "name": "fn-cache",
   "version": "1.0.1",
   "description": "Caching function for browsers and node.",
   "keywords": [
@@ -8,7 +8,7 @@
     "decorator",
     "functions"
   ],
-  "main": "lib/cache.js",
+  "main": "lib/fn-cache.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint src/ test/",
