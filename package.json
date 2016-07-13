@@ -1,6 +1,6 @@
 {
   "name": "cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Caching function for browsers and node.",
   "keywords": [
     "cache",
@@ -10,12 +10,17 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- -R nyan"
+    "test": "istanbul cover _mocha -- -R nyan",
+    "build": "rollup -c"
   },
   "author": "Alejo Rodriguez <a.rodsott@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
     "istanbul": "^0.4.4",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "rollup": "^0.34.1",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-uglify": "^1.0.1"
   }
 }
