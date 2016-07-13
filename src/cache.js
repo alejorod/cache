@@ -24,7 +24,7 @@ function cacheFn(time) {
       };
 
       return result;
-    };
+    }
 
     wrapper.clearCache = clearCache;
     return wrapper;
