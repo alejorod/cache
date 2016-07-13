@@ -8,14 +8,19 @@
     "decorator",
     "functions"
   ],
-  "main": "index.js",
+  "main": "lib/cache.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- -R nyan",
+    "test": "mocha --compilers js:babel-core/register -R spec",
+    "test:cover": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- -R spec",
     "build": "rollup -c"
   },
   "author": "Alejo Rodriguez <a.rodsott@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-istanbul": "^0.11.0",
+    "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2015-rollup": "^1.1.1",
     "istanbul": "^0.4.4",
     "mocha": "^2.5.3",

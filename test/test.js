@@ -1,5 +1,5 @@
-var assert = require('chai').assert;
-var cache = require('../index');
+import { assert } from 'chai';
+import cache from '../src/cache';
 
 var result;
 function globalResult() {
