@@ -1,28 +1,25 @@
 # Function caching in Javascript [![Build Status](https://travis-ci.org/alejorod/cache.svg?branch=master)](https://travis-ci.org/alejorod/cache) [![Coverage Status](https://coveralls.io/repos/github/alejorod/cache/badge.svg?branch=master)](https://coveralls.io/github/alejorod/cache?branch=master)  
 
-Caching function results decorator. Supports node and browser environments (umd specification)
+Caching function decorator. Supports CommonJs, AMD, ES6 modules and regular
+scripts tag.
 
-### Examples
+Basic usage:
 
 ```Javascript
-// es5
+import cache from 'cache';
 
-var cache = require('cache');
-
-var sumLongArray = cache(Infinity)(function(longArray) {
-  return longArray.reduce(function(prev, curr) {
-    return prev + curr;
-  });
+let fetchUsers = cache(200)(() => {
+  return fetch('/users');
 });
 ```
 
-```Javascript
-// es6
+```Cache``` implements the decorator pattern. It takes in the milliseconds that the cache
+should be valid and returns a function. Call it with the function you want to cache and
+enjoy the application performance upgrade! 😎
 
-import cache from 'cache';
+> TIP: use Infinity time for stateless functions.
 
-let fetchUsers = cache(200)(fetch.bind(null, '/users'));
-```
+### Examples
 
 ```Javascript
 // es7 decorators
@@ -38,4 +35,33 @@ class UserManager {
     });
   }
 }
+```
+
+```Javascript
+// es6
+
+import cache from 'cache';
+
+let fetchUsers = cache(200)(fetch.bind(null, '/users'));
+```
+
+```Javascript
+// es5 + node
+
+var cache = require('cache');
+
+var sumLongArray = cache(Infinity)(function(longArray) {
+  return longArray.reduce(function(prev, curr) {
+    return prev + curr;
+  });
+});
+```
+
+```Javascript
+// es5 + browser
+
+// Include it in your page using:
+// <script src="lib/cache.js" ></script>
+
+var sqrt = cache(Infinity)(Math.sqrt);
 ```
