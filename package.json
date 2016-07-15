@@ -18,6 +18,7 @@
   "main": "lib/fn-cache.js",
   "scripts": {
     "build": "rollup -c",
+    "prepublish": "npm run build",
     "lint": "eslint src/ test/",
     "test": "mocha --compilers js:babel-core/register -R spec",
     "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- -R spec",
