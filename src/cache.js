@@ -27,39 +27,36 @@ function cacheFn(time) {
       return result;
     }
 
-    return (ctx) => {
-      let fn = wrapper.bind(ctx);
-      fn.clearCache = clearCache;
+    wrapper.clearCache = clearCache;
 
-      return fn;
-    };
+    return wrapper;
   };
 }
 
 export default function(time) {
   return function(target, property, descriptor) {
-    let factory;
+    let cached;
 
     if (typeof target === 'function') {
-      return cacheFn(time)(target)();
+      return cacheFn(time)(target);
     }
 
-    factory = cacheFn(time)(descriptor.value);
+    cached = cacheFn(time)(descriptor.value);
 
     return {
       configurable: true,
       get() {
-        let boundFn = factory(this);
+        let boundCached = cached.bind(this);
+        boundCached.clearCache = cached.clearCache;
 
         Object.defineProperty(this, property, {
-          value: boundFn,
+          value: boundCached,
           configurable: true,
           writable: true
         });
 
-        return boundFn;
+        return boundCached;
       }
     };
-
   };
 }

@@ -193,7 +193,7 @@ describe('Cache', () => {
       }
 
       @cache(Infinity)
-      getGlobalName() {
+      getName() {
         return this.name;
       }
     }
@@ -202,18 +202,20 @@ describe('Cache', () => {
 
     it('# should return the cached value', () => {
       dummy.name = 'jon snow';
-      assert.strictEqual('jon snow', dummy.getGlobalName());
+      assert.strictEqual('jon snow', dummy.getName());
       dummy.name = 'ygritte';
-      assert.strictEqual('jon snow', dummy.getGlobalName());
+      assert.strictEqual('jon snow', dummy.getName());
     });
 
     it('# should invalidate cache when cleared', () => {
       dummy.name = 'jon snow';
-      assert.strictEqual('jon snow', dummy.getGlobalName());
+      assert.strictEqual('jon snow', dummy.getName());
       dummy.name = 'ygritte';
-      assert.strictEqual('jon snow', dummy.getGlobalName());
-      dummy.getGlobalName.clearCache();
-      assert.strictEqual('ygritte', dummy.getGlobalName());
+      assert.strictEqual('jon snow', dummy.getName());
+      dummy.getName.clearCache();
+      assert.strictEqual('ygritte', dummy.getName());
+      dummy.name = 'tormund';
+      assert.strictEqual('ygritte', dummy.getName());
     });
   });
 });
