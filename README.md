@@ -42,7 +42,7 @@ class UserManager {
   // cache will be vaild for 200 milliseconds
   @cache(200)
   getAll() {
-    // this.endpoint gets the right value 
+    // this.endpoint gets the right value
     // because  getAll is autobinded
     return fetch(this.endpoint).then((response) => {
       return response.json();
@@ -56,7 +56,7 @@ let manager = new UserManager('/users');
 manager.getAll();
 
 // we can clear the cache by calling clearCache
-// although its no necessary most of the times
+// although its no necessary on most cases.
 manager.getAll.clearCache()
 ```
 
@@ -66,7 +66,7 @@ manager.getAll.clearCache()
 
 import cache from 'fn-cache';
 
-function reallyExpensive(...args) {
+function reallyExpensiveOperation(...args) {
   // expensive operations
   return expensiveToCalculateResult;
 }
@@ -74,7 +74,7 @@ function reallyExpensive(...args) {
 // We don't want the cache to be invalidated, thats why we use
 // Infinity, if you want to give the cache a lifetime, just pass
 // in a {Number} representing milliseconds.
-let fetchUsers = cache(Infinity)(fetch.bind(null, '/users'));
+let operation = cache(Infinity)(reallyExpensiveOperation);
 ```
 
 ##### ES5 - Node
