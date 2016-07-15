@@ -7,8 +7,7 @@ export default {
   dest: 'lib/fn-cache.js',
   plugins: [ babel({
     babelrc: false,
-    presets: [ 'es2015-rollup' ],
-    plugins: [ 'syntax-object-rest-spread', 'transform-object-rest-spread']
+    presets: [ 'es2015-rollup' ]
   }), uglify() ],
   moduleName: 'fnCache'
 };
