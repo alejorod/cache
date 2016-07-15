@@ -7,6 +7,7 @@ function cacheFn(time) {
     }
 
     function wrapper(...args) {
+
       let key = JSON.stringify(args);
       let cache = f_cache[key];
       let now = Date.now();
@@ -16,7 +17,7 @@ function cacheFn(time) {
         return cache.result;
       }
 
-      result = f.apply(f, args);
+      result = f.apply(this, args);
 
       f_cache[key] = {
         timestamp: now,
@@ -26,18 +27,39 @@ function cacheFn(time) {
       return result;
     }
 
-    wrapper.clearCache = clearCache;
-    return wrapper;
+    return (ctx) => {
+      let fn = wrapper.bind(ctx);
+      fn.clearCache = clearCache;
+
+      return fn;
+    };
   };
 }
 
 export default function(time) {
   return function(target, property, descriptor) {
-    if (typeof target == 'function') {
-      return cacheFn(time)(target);
+    let factory;
+
+    if (typeof target === 'function') {
+      return cacheFn(time)(target)();
     }
 
-    descriptor.value = cacheFn(time)(descriptor.value);
-    return descriptor;
+    factory = cacheFn(time)(descriptor.value);
+
+    return {
+      configurable: true,
+      get() {
+        let boundFn = factory(this);
+
+        Object.defineProperty(this, property, {
+          value: boundFn,
+          configurable: true,
+          writable: true
+        });
+
+        return boundFn;
+      }
+    };
+
   };
 }

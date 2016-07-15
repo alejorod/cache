@@ -185,29 +185,32 @@ describe('Cache', () => {
   });
 
   describe('# Class Method cache', () => {
-    let name;
     let dummy;
 
     class DummyClass {
+      constructor() {
+        this.name = 'jon snow';
+      }
+
       @cache(Infinity)
       getGlobalName() {
-        return name;
+        return this.name;
       }
     }
 
     dummy = new DummyClass();
 
     it('# should return the cached value', () => {
-      name = 'jon snow';
+      dummy.name = 'jon snow';
       assert.strictEqual('jon snow', dummy.getGlobalName());
-      name = 'ygritte';
+      dummy.name = 'ygritte';
       assert.strictEqual('jon snow', dummy.getGlobalName());
     });
 
     it('# should invalidate cache when cleared', () => {
-      name = 'jon snow';
+      dummy.name = 'jon snow';
       assert.strictEqual('jon snow', dummy.getGlobalName());
-      name = 'ygritte';
+      dummy.name = 'ygritte';
       assert.strictEqual('jon snow', dummy.getGlobalName());
       dummy.getGlobalName.clearCache();
       assert.strictEqual('ygritte', dummy.getGlobalName());
