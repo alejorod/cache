@@ -14,36 +14,72 @@ let fetchUsers = cache(200)(() => {
 
 ```fn-cache``` implements the decorator pattern. It takes in the cache lifetime (milliseconds) and returns a function. Call that with the function you want to cache and enjoy instant application performance boost! 😎
 
-> TIP: Use Infinity for time if you want the cache to stay valid forever.
+> TIP: Use ```Infinity``` time if you want the cache to stay valid forever.
 
-### Examples
+### Installation
+```
+npm install fn-cache
+```
+
+### Usage
+
+```fn-cache``` can cache regular function or class methods. It can be used as a regular function or as a ES7 decorator 💪.  
+To clear cache, each decorated function is added a ```clearCache``` method that when called, clears that function cache.  
+
+##### ES7 - decorator
+
+> Cache methods are **autobinded**
 
 ```Javascript
-// es7 decorators
-
 import cache from 'fn-cache';
 
 class UserManager {
 
+  constructor(usersEndpoint) {
+    this.endpoint = usersEndpoint;
+  }
+
+  // cache will be vaild for 200 milliseconds
   @cache(200)
   getAll() {
-    return fetch('/users').then((response) => {
+    // this.endpoint gets the right value 
+    // because  getAll is autobinded
+    return fetch(this.endpoint).then((response) => {
       return response.json();
     });
   }
 }
+
+let manager = new UserManager('/users');
+
+// calling the cache function works as expected
+manager.getAll();
+
+// we can clear the cache by calling clearCache
+// although its no necessary most of the times
+manager.getAll.clearCache()
 ```
 
+##### ES6
+
 ```Javascript
-// es6
 
 import cache from 'fn-cache';
 
-let fetchUsers = cache(200)(fetch.bind(null, '/users'));
+function reallyExpensive(...args) {
+  // expensive operations
+  return expensiveToCalculateResult;
+}
+
+// We don't want the cache to be invalidated, thats why we use
+// Infinity, if you want to give the cache a lifetime, just pass
+// in a {Number} representing milliseconds.
+let fetchUsers = cache(Infinity)(fetch.bind(null, '/users'));
 ```
 
+##### ES5 - Node
+
 ```Javascript
-// es5 + node
 
 var cache = require('fn-cache');
 
@@ -54,11 +90,10 @@ var sumLongArray = cache(Infinity)(function(longArray) {
 });
 ```
 
+##### ES5 - Browser
+
+> Include ```<script src="lib/fn-cache.js" ></script>``` in your page
+
 ```Javascript
-// es5 + browser
-
-// Include it in your page using:
-// <script src="lib/fn-cache.js" ></script>
-
 var sqrt = fnCache(Infinity)(Math.sqrt);
 ```
