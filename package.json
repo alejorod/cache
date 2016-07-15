@@ -1,6 +1,6 @@
 {
   "name": "fn-cache",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Caching function for browsers and node.",
   "keywords": [
     "cache",
